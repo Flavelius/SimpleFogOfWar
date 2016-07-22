@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8af0db29443bde842aeb5d020a195236
+timeCreated: 1469193176
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - viewStampShader: {fileID: 4800000, guid: 78a7a6404d0bd4d46a06092229fcfe4c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

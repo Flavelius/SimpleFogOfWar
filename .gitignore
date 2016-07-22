@@ -29,6 +29,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+_Resharper.Caches/
+ProjectSettings/
+
 # =========================
 # Operating System Files
 # =========================
