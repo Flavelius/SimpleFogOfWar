@@ -16,12 +16,12 @@ namespace SimpleFogOfWar
 
         void Start()
         {
-            FogOfWarSystem.AddInfluence(this);
+            FogOfWarSystem.RegisterInfluence(this);
         }
 
         void OnDestroy()
         {
-            FogOfWarSystem.RemoveInfluence(this);
+            FogOfWarSystem.UnregisterInfluence(this);
         }
 
     }
