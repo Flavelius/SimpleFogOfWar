@@ -68,7 +68,7 @@ namespace SimpleFogOfWar.Renderers
             Graphics.DrawMesh(displayMesh, basePosition, Quaternion.identity, displayMat, 0);
         }
 
-        protected override void Initialize(FogOfWar source, Texture displayTexture)
+        protected override void Initialize(FogOfWarSystem source, Texture displayTexture)
         {
             displayMat = new Material(Shader.Find("Hidden/FOWSeeThroughShader")) { mainTexture = displayTexture };
             GenerateDisplayMesh(source.Size);

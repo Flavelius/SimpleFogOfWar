@@ -14,7 +14,7 @@ namespace SimpleFogOfWar.Test
             {
                 if (GUILayout.Button("Save current State"))
                 {
-                    var fow = FindObjectOfType<FogOfWar>();
+                    var fow = FindObjectOfType<FogOfWarSystem>();
                     if (fow)
                     {
                         st.SaveData = fow.GetPersistentData();
@@ -25,7 +25,7 @@ namespace SimpleFogOfWar.Test
             {
                 if (GUILayout.Button("Restore saved State"))
                 {
-                    var fow = FindObjectOfType<FogOfWar>();
+                    var fow = FindObjectOfType<FogOfWarSystem>();
                     if (fow)
                     {
                         fow.LoadPersistentData(st.SaveData);

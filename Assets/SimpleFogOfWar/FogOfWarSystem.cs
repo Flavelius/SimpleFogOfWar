@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SimpleFogOfWar
 {
-    public class FogOfWar : MonoBehaviour
+    public class FogOfWarSystem : MonoBehaviour
     {
 
         public enum FogMode
@@ -50,7 +50,7 @@ namespace SimpleFogOfWar
         float lastSnapShot;
         bool initialized;
 
-        readonly List<IFOWEntity> entities = new List<IFOWEntity>();
+        static readonly List<FogOfWarInfluence> influences = new List<FogOfWarInfluence>();
 
         /// <summary>
         /// The interval at which snapshots are taken that are used by <see cref="GetVisibility"/> 
@@ -75,20 +75,21 @@ namespace SimpleFogOfWar
         }
 
         /// <summary>
-        /// Adds <see cref="entity"/> to contribute to the fog rendering
+        /// Registers an <see cref="influence"/> to be able to contribute to the fog calculations
         /// </summary>
-        public void RegisterEntity(IFOWEntity entity)
+        public static void RegisterInfluence(FogOfWarInfluence influence)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            if (!entities.Contains(entity)) entities.Add(entity);
+            if (influence == null) throw new ArgumentNullException("influence");
+            if (!influences.Contains(influence)) influences.Add(influence);
         }
 
         /// <summary>
-        /// Removes <see cref="entity"/> from the fog contribution calculations
+        /// Removes an <see cref="influence"/> from the fog calculations
         /// </summary>
-        public void RemoveEntity(IFOWEntity entity)
+        public static void UnregisterInfluence(FogOfWarInfluence influence)
         {
-            entities.Remove(entity);
+            if (influence == null) throw new ArgumentNullException("influence");
+            influences.Remove(influence);
         }
 
         /// <summary>
@@ -275,12 +276,12 @@ namespace SimpleFogOfWar
             GL.PushMatrix();
             var res = (int)Resolution;
             GL.LoadPixelMatrix(0, res, 0, res);
-            for (var i = 0; i < entities.Count; i++)
+            for (var i = 0; i < influences.Count; i++)
             {
-                if (entities[i].FOWContributionDisabled) continue;
-                var abspos = transform.InverseTransformPoint(entities[i].Position);
+                if (influences[i].Suspended) continue;
+                var abspos = transform.InverseTransformPoint(influences[i].transform.position);
                 var scaling = (int)Resolution / size;
-                var screenRect = new Rect(new Vector2(abspos.x, abspos.z) * scaling, new Vector2(entities[i].ViewDistance, entities[i].ViewDistance) * scaling);
+                var screenRect = new Rect(new Vector2(abspos.x, abspos.z) * scaling, new Vector2(influences[i].ViewDistance, influences[i].ViewDistance) * scaling);
                 screenRect.position -= screenRect.size * 0.5f;
                 Graphics.DrawTexture(screenRect, viewStamp, viewStampMat);
             }

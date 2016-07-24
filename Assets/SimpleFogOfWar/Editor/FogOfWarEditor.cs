@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 // ReSharper disable CheckNamespace
 
-[CustomEditor(typeof(FogOfWar))]
+[CustomEditor(typeof(FogOfWarSystem))]
 public class FogOfWarEditor : Editor
 {
     readonly string[] renderers = {"Select", "DirectSeeThrough", "Projector"};
@@ -13,7 +13,7 @@ public class FogOfWarEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        var fow = target as FogOfWar;
+        var fow = target as FogOfWarSystem;
         if (!fow) return;
         serializedObject.Update();
         EditorGUI.BeginChangeCheck();

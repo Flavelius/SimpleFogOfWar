@@ -4,10 +4,10 @@ namespace SimpleFogOfWar.Renderers
 {
     public abstract class FOWRenderer: ScriptableObject
     {
-        protected abstract void Initialize(FogOfWar source, Texture displayTexture);
+        protected abstract void Initialize(FogOfWarSystem source, Texture displayTexture);
         public virtual void Render(Vector3 basePosition) { }
 
-        public virtual void DrawGizmos(FogOfWar source)
+        public virtual void DrawGizmos(FogOfWarSystem source)
         {
             var box = new Vector3(source.Size, 0, source.Size);
             Gizmos.DrawWireCube(new Vector3(source.transform.position.x + box.x * 0.5f, 0, source.transform.position.z + box.z * 0.5f), box);
@@ -19,7 +19,7 @@ namespace SimpleFogOfWar.Renderers
         protected int shaderBlurID;
         protected int shaderColorID;
 
-        public void Init(FogOfWar source, Texture displayTexture)
+        public void Init(FogOfWarSystem source, Texture displayTexture)
         {
             shaderBlurID = Shader.PropertyToID("_Blur");
             shaderColorID = Shader.PropertyToID("_Color");

@@ -18,7 +18,7 @@ namespace SimpleFogOfWar.Renderers
         [SerializeField, Tooltip("The lowest point where fog will be projected")]
         float clipBottom = -20;
 
-        protected override void Initialize(FogOfWar source, Texture displayTexture)
+        protected override void Initialize(FogOfWarSystem source, Texture displayTexture)
         {
             projector = new GameObject("FogProjector").AddComponent<Projector>();
             projector.transform.parent = source.transform;
@@ -55,7 +55,7 @@ namespace SimpleFogOfWar.Renderers
             if (projector) Destroy(projector);
         }
 
-        public override void DrawGizmos(FogOfWar source)
+        public override void DrawGizmos(FogOfWarSystem source)
         {
             var height = Mathf.Abs(clipTop - clipBottom);
             Gizmos.DrawWireCube(source.transform.position + new Vector3(source.Size * 0.5f, clipTop - height * 0.5f, source.Size * 0.5f), new Vector3(source.Size, height, source.Size));

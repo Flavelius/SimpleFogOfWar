@@ -6,12 +6,12 @@ namespace SimpleFogOfWar.Test
     public class FOWVisibilityTester: MonoBehaviour
     {
 
-        FogOfWar fow;
+        FogOfWarSystem fow;
         Color gizmoColor;
 
         void Start()
         {
-            fow = FindObjectOfType<FogOfWar>();
+            fow = FindObjectOfType<FogOfWarSystem>();
         }
 
         void Update()
@@ -20,13 +20,13 @@ namespace SimpleFogOfWar.Test
             var fv = fow.GetVisibility(transform.position);
             switch (fv)
             {
-                case FogOfWar.FogVisibility.Undetermined:
+                case FogOfWarSystem.FogVisibility.Undetermined:
                     gizmoColor = Color.white;
                     break;
-                case FogOfWar.FogVisibility.Visible:
+                case FogOfWarSystem.FogVisibility.Visible:
                     gizmoColor = Color.green;
                     break;
-                case FogOfWar.FogVisibility.Invisible:
+                case FogOfWarSystem.FogVisibility.Invisible:
                     gizmoColor = Color.red;
                     break;
             }
