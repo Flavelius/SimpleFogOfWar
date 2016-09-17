@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+
 Shader "Hidden/FOWProjectorShader" {
 	Properties 
 	{
@@ -26,7 +28,7 @@ Shader "Hidden/FOWProjectorShader" {
 			};
 			
 
-			float4x4 _Projector;
+			float4x4 unity_Projector;
 			sampler2D _MainTex;
 			half4 _MainTex_TexelSize;
 			half3 _Color;
@@ -36,7 +38,7 @@ Shader "Hidden/FOWProjectorShader" {
 			{
 				v2f o;
 				o.pos = mul (UNITY_MATRIX_MVP, vertex);
-				o.uvShadow = mul (_Projector, vertex);
+				o.uvShadow = mul (unity_Projector, vertex);
 				return o;
 			}
 			
